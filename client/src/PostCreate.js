@@ -1,15 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 export default () => {
-  return <div>
-    <form>
-      <div className="div-group">
-        <label>Title</label>
-        <input className="form-control" />
-      </div>
-      <br />
-      <button className="btn btn-primary">Submit</button>
-    </form>
+  const [title, setTitle] = useState('');
 
-  </div>
-}
+  const onSubmit = async (event) => {
+    event.preventDefault();
+
+    await axios.post('http://localhost:4000/posts', {
+      title,
+    });
+
+    setTitle('');
+  };
+
+  return (
+    <div>
+      <form onSubmit={onSubmit}>
+        <div className='div-group'>
+          <label>Title</label>
+          <input
+            className='form-control'
+            value={title}
+            oChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+        <br />
+        <button className='btn btn-primary'>Submit</button>
+      </form>
+    </div>
+  );
+};
