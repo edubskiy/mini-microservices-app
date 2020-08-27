@@ -22,7 +22,7 @@ export default () => {
           <input
             className='form-control'
             value={title}
-            oChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <br />
